@@ -1278,7 +1278,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #1f42ff;
+    background: #71ffc8;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1762,9 +1762,6 @@ pre code {
 .post-button {
   margin-top: 40px;
   text-align: center;
-}
-.use-motion .post-body {
-  visibility: hidden;
 }
 .posts-collapse .post-content {
   margin-bottom: 35px;
