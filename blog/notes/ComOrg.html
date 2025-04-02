@@ -18,15 +18,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="第一章 计算机抽象及相关技术 CPI：执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间">
+    <meta name="description" content="第一章 计算机抽象及相关技术 CPI：执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   image-20250312171512958    image-20250312171434540  符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指令">
 <meta property="og:type" content="website">
 <meta property="og:title" content="计算机组成与系统结构">
 <meta property="og:url" content="https://jadequer.github.io/blog/notes/ComOrg.html">
 <meta property="og:site_name" content="Arctic&#39;s Blog">
-<meta property="og:description" content="第一章 计算机抽象及相关技术 CPI：执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间">
+<meta property="og:description" content="第一章 计算机抽象及相关技术 CPI：执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   image-20250312171512958    image-20250312171434540  符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指令">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-12T08:56:16.588Z">
+<meta property="article:modified_time" content="2025-04-02T15:16:18.963Z">
 <meta property="article:author" content="Arctic">
 <meta name="twitter:card" content="summary">
 
@@ -111,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%BD%E8%B1%A1%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">第一章 计算机抽象及相关技术</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%BD%E8%B1%A1%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">第一章 计算机抽象及相关技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8C%87%E4%BB%A4%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-text">第二章 指令：计算机的语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="nav-text">符号扩展：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mips%E5%AD%97%E6%AE%B532%E4%BD%8D"><span class="nav-text">MIPS字段（32位）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pc"><span class="nav-text">PC：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,6 +189,92 @@
           <h2 id="第一章-计算机抽象及相关技术">第一章 计算机抽象及相关技术</h2>
 <p><strong>CPI：</strong>执行每条指令所需的平均时钟周期数</p>
 <p><strong>SPEC分值</strong> = 参考时间 / 执行时间</p>
+<h2 id="第二章-指令计算机的语言">第二章 指令：计算机的语言</h2>
+<figure>
+<img
+src="C:\Users\jiangqinru\AppData\Roaming\Typora\typora-user-images\image-20250312171512958.png"
+alt="image-20250312171512958" />
+<figcaption aria-hidden="true">image-20250312171512958</figcaption>
+</figure>
+<figure>
+<img
+src="C:\Users\jiangqinru\AppData\Roaming\Typora\typora-user-images\image-20250312171434540.png"
+alt="image-20250312171434540" />
+<figcaption aria-hidden="true">image-20250312171434540</figcaption>
+</figure>
+<h4 id="符号扩展">符号扩展：</h4>
+<p>对有符号数，低位直接复制，高位全部填充为符号位</p>
+<h4 id="mips字段32位">MIPS字段（32位）：</h4>
+<p><strong>R型指令</strong>格式：</p>
+<p>用于寄存器，指令的后半部分是三个字段</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 17%" />
+<col style="width: 32%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>op</th>
+<th>rs</th>
+<th>rt</th>
+<th>rd</th>
+<th>shamt</th>
+<th>funct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6位</td>
+<td>5位</td>
+<td>5位</td>
+<td>5位</td>
+<td>5位</td>
+<td>6位</td>
+</tr>
+<tr class="even">
+<td>操作码</td>
+<td>第一个源操作数寄存器</td>
+<td>第二个源操作数寄存器</td>
+<td>存放操作结果的目的寄存器</td>
+<td>位移量（在移位指令中用到，移位时空出的位填0）</td>
+<td>功能码（进行何种运算）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>I型指令</strong>格式：</p>
+<p>用于立即数，指令的后半部分是一个字段（不是两个？</p>
+<table>
+<thead>
+<tr class="header">
+<th>op</th>
+<th>rs</th>
+<th>rt</th>
+<th>constant或address</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6位</td>
+<td>5位</td>
+<td>5位</td>
+<td>16位</td>
+</tr>
+</tbody>
+</table>
+<p>根据op的值可以判断指令格式（R型还是I型）</p>
+<h4 id="pc">PC：</h4>
+<p>程序计数器，存放正在被执行的指令的地址的寄存器</p>
+<p>PC相对寻址（一种分支地址的寻址方式）：将PC和指令中的常数相加作为寻址结果（因为我们会提前递增PC，所以是相对于PC+4的地址）</p>
+<blockquote>
+<p>地址生成规则示例：</p>
+<p>jal（J型指令）：跳转地址=(PC高4位)∣(目标地址≪2)</p>
+<p>beq（I型指令）：跳转地址=PC+4+(偏移量≪2)</p>
+<p>需要乘4是因为MIPS指令长度均为4字节</p>
+</blockquote>
 
       </div>
       
