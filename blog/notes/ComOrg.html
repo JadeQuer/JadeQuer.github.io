@@ -18,17 +18,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   image-20250312171512958    image-20250312171434540  符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指">
+    <meta name="description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指令的后半部分是三个字段    op rs rt rd shamt funct     6位 5位 5位 5位 5位 6位   操作码 第">
 <meta property="og:type" content="website">
 <meta property="og:title" content="计算机组成与系统结构">
 <meta property="og:url" content="https://jadequer.github.io/blog/notes/ComOrg.html">
 <meta property="og:site_name" content="Arctic&#39;s Blog">
-<meta property="og:description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   image-20250312171512958    image-20250312171434540  符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指">
+<meta property="og:description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指令的后半部分是三个字段    op rs rt rd shamt funct     6位 5位 5位 5位 5位 6位   操作码 第">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jadequer.github.io/blog/image/image-20250312171512958.png">
+<meta property="og:image" content="https://jadequer.github.io/blog/image/image-20250312171434540.png">
 <meta property="article:published_time" content="2025-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-05T09:24:01.447Z">
+<meta property="article:modified_time" content="2025-04-05T09:40:19.792Z">
 <meta property="article:author" content="Arctic">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jadequer.github.io/blog/image/image-20250312171512958.png">
 
 
 <link rel="canonical" href="https://jadequer.github.io/blog/notes/ComOrg">
@@ -111,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%BD%E8%B1%A1%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">第一章 计算机抽象及相关技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8C%87%E4%BB%A4%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-text">第二章 指令：计算机的语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="nav-text">符号扩展：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mips%E5%AD%97%E6%AE%B532%E4%BD%8D"><span class="nav-text">MIPS字段（32位）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pc"><span class="nav-text">PC：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text">第三章 计算机的算数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BAieee-754%E6%A0%87%E5%87%86"><span class="nav-text">浮点表示：IEEE 754标准</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">第四章 处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E5%9F%BA%E7%A1%80"><span class="nav-text">数字逻辑基础：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86"><span class="nav-text">MIPS核心子集：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="nav-text">指令周期：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%BD%E8%B1%A1%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">第一章 计算机抽象及相关技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8C%87%E4%BB%A4%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-text">第二章 指令：计算机的语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95%EF%BC%9A"><span class="nav-text">符号扩展：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIPS%E5%AD%97%E6%AE%B5%EF%BC%8832%E4%BD%8D%EF%BC%89%EF%BC%9A"><span class="nav-text">MIPS字段（32位）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PC%EF%BC%9A"><span class="nav-text">PC：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text">第三章 计算机的算数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA%EF%BC%9AIEEE-754%E6%A0%87%E5%87%86"><span class="nav-text">浮点表示：IEEE 754标准</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">第四章 处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E5%9F%BA%E7%A1%80%EF%BC%9A"><span class="nav-text">数字逻辑基础：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIPS%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86%EF%BC%9A"><span class="nav-text">MIPS核心子集：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F%EF%BC%9A"><span class="nav-text">指令周期：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -186,38 +189,20 @@
       
       
       <div class="post-body">
-          <h1 id="第一章-计算机抽象及相关技术">第一章 计算机抽象及相关技术</h1>
+          <h2 id="第一章-计算机抽象及相关技术">第一章 计算机抽象及相关技术</h2>
 <p><strong>CPI：</strong> 执行每条指令所需的平均时钟周期数</p>
 <p><strong>SPEC分值</strong> = 参考时间 / 执行时间</p>
-<h1 id="第二章-指令计算机的语言">第二章 指令：计算机的语言</h1>
-<figure>
-<img
-src="https://jadequer.github.io/blog/image/image-20250312171512958.png"
-alt="image-20250312171512958" />
-<figcaption aria-hidden="true">image-20250312171512958</figcaption>
-</figure>
-<figure>
-<img
-src="https://jadequer.github.io/blog/image/image-20250312171434540.png"
-alt="image-20250312171434540" />
-<figcaption aria-hidden="true">image-20250312171434540</figcaption>
-</figure>
-<h3 id="符号扩展">符号扩展：</h3>
+<h2 id="第二章-指令：计算机的语言">第二章 指令：计算机的语言</h2>
+<p><img src="https://jadequer.github.io/blog/image/image-20250312171512958.png" alt="image-20250312171512958"></p>
+<p><img src="https://jadequer.github.io/blog/image/image-20250312171434540.png" alt="image-20250312171434540"></p>
+<h4 id="符号扩展：">符号扩展：</h4>
 <p>对有符号数，低位直接复制，高位全部填充为符号位</p>
-<h3 id="mips字段32位">MIPS字段（32位）：</h3>
+<h4 id="MIPS字段（32位）：">MIPS字段（32位）：</h4>
 <p><strong>R型指令</strong>格式：</p>
 <p>用于寄存器，指令的后半部分是三个字段</p>
 <table>
-<colgroup>
-<col style="width: 4%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 17%" />
-<col style="width: 32%" />
-<col style="width: 16%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>op</th>
 <th>rs</th>
 <th>rt</th>
@@ -227,7 +212,7 @@ alt="image-20250312171434540" />
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>6位</td>
 <td>5位</td>
 <td>5位</td>
@@ -235,7 +220,7 @@ alt="image-20250312171434540" />
 <td>5位</td>
 <td>6位</td>
 </tr>
-<tr class="even">
+<tr>
 <td>操作码</td>
 <td>第一个源操作数寄存器</td>
 <td>第二个源操作数寄存器</td>
@@ -249,7 +234,7 @@ alt="image-20250312171434540" />
 <p>用于立即数，指令的后半部分是一个字段（不是两个？</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>op</th>
 <th>rs</th>
 <th>rt</th>
@@ -257,7 +242,7 @@ alt="image-20250312171434540" />
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>6位</td>
 <td>5位</td>
 <td>5位</td>
@@ -266,51 +251,51 @@ alt="image-20250312171434540" />
 </tbody>
 </table>
 <p>根据op的值可以判断指令格式（R型还是I型）</p>
-<h3 id="pc">PC：</h3>
+<h4 id="PC：">PC：</h4>
 <p>程序计数器，存放正在被执行的指令的地址的寄存器</p>
-<p>PC相对寻址（一种分支地址的寻址方式）：将PC和指令中的常数相加作为寻址结果（因为我们会提前递增PC，所以是相对于PC+4的地址）P100</p>
+<p>PC相对寻址（一种分支地址的寻址方式）：将PC和指令中的常数相加作为寻址结果（因为我们会提前递增PC，所以是相对于PC+4的地址）</p>
 <blockquote>
 <p>地址生成规则示例：</p>
 <p>jal（J型指令）：跳转地址=(PC高4位)∣(目标地址≪2)</p>
 <p>beq（I型指令）：跳转地址=PC+4+(偏移量≪2)</p>
 <p>需要乘4是因为MIPS指令长度均为4字节</p>
 </blockquote>
-<h1 id="第三章-计算机的算数运算">第三章 计算机的算数运算</h1>
+<p>P100</p>
+<h2 id="第三章-计算机的算数运算">第三章 计算机的算数运算</h2>
 <p>加减法：有符号数发生溢出时产生异常，无符号数发生溢出时直接忽略溢出位</p>
 <p>减法：将减数求补（取反+1），再进行加法</p>
 <p>乘除法：书上有介绍（不知是否要掌握）</p>
 <p>饱和算术：超过最大值或最小值时，取值为最大值或最小值</p>
-<h3 id="浮点表示ieee-754标准">浮点表示：IEEE 754标准</h3>
+<h4 id="浮点表示：IEEE-754标准">浮点表示：IEEE 754标准</h4>
 <p><strong>单精度（32位）：</strong></p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>s（符号位）</th>
 <th>指数</th>
 <th>尾数</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1位</td>
 <td>8位（偏移量为127）</td>
 <td>23位</td>
 </tr>
 </tbody>
 </table>
-<p>(-1)<sup>s</sup> × （1+尾数）× 2<sup>指数-127</sup>
-（在浮点表示中隐含了一个1）</p>
+<p>(-1)^s^ × （1+尾数）× 2^指数-127^ （在浮点表示中隐含了一个1）</p>
 <p><strong>双精度（64位）：</strong></p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>s（符号位）</th>
 <th>指数</th>
 <th>尾数</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1位</td>
 <td>11位（偏移量为1023）</td>
 <td>52位</td>
@@ -319,95 +304,90 @@ alt="image-20250312171434540" />
 </table>
 <p>小数部分的二进制表示：每次乘2，若个位为1，则该位记为1，否则记为0</p>
 <p>浮点数的加法：先对阶（指数部分一致），再将尾数相加，最后规格化</p>
-<h1 id="第四章-处理器">第四章 处理器</h1>
+<h2 id="第四章-处理器">第四章 处理器</h2>
 <p>（根据翼云图灵网课）</p>
-<h3 id="数字逻辑基础">数字逻辑基础：</h3>
-<ol type="1">
+<h4 id="数字逻辑基础：">数字逻辑基础：</h4>
+<ol>
 <li>组合逻辑：不含存储器，输入给定时输出也唯一确定</li>
 <li>时序逻辑：含存储器，至少两个输入（时钟、输入数据）</li>
 <li>边沿触发时钟：只有在时钟上升沿时才写入数据</li>
 <li>多路选择器：根据控制信号，从多个数据中选择一个作为输出</li>
 <li>总线：数据信息多于一位的信号线</li>
 </ol>
-<h3 id="mips核心子集">MIPS核心子集：</h3>
-<ol type="1">
+<h4 id="MIPS核心子集：">MIPS核心子集：</h4>
+<ol>
 <li><strong>R型指令：</strong> add , sub , AND , OR , slt</li>
 <li>访存指令：<strong>lw , sw</strong></li>
 <li>决策指令：<strong>beq</strong> , j</li>
 </ol>
-<h3 id="指令周期">指令周期：</h3>
-<ol type="1">
+<h4 id="指令周期：">指令周期：</h4>
+<ol>
 <li>IF（Instruction Fetch，取指令）
 <ul>
 <li>根据PC（程序计数器）提供的地址，从这个地址的指令存储器中取出指令</li>
 <li>更新PC，PC = PC+4（每条指令占四个字节）</li>
-</ul></li>
+</ul>
+</li>
 <li>ID（Instruction Decode，指令译码与读寄存器）
 <ul>
 <li>指令译码：根据操作码（opcode）确定指令类型（R型、I型、J型）。</li>
 <li>寄存器读取（根据指令类型）</li>
 <li>生成控制信号：如<code>RegDst</code>、<code>ALUSrc</code>、<code>MemtoReg</code>等。</li>
-</ul></li>
+</ul>
+</li>
 <li>EX（Execute，执行运算）</li>
 <li>MEM（Memory Access）：
 <ul>
 <li>访存：lw , sw</li>
 <li>分支：若分支条件成立（如<code>beq</code>），更新PC为目标地址；否则顺序执行</li>
-</ul></li>
+</ul>
+</li>
 <li>WB写回（Write Back，写回）</li>
 </ol>
 <p><strong>不同指令的流水线示例</strong></p>
 <table>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 8%" />
-<col style="width: 18%" />
-<col style="width: 16%" />
-<col style="width: 21%" />
-<col style="width: 18%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;"><strong>指令类型</strong></th>
-<th style="text-align: left;"><strong>IF</strong></th>
-<th style="text-align: left;"><strong>ID</strong></th>
-<th style="text-align: left;"><strong>EX</strong></th>
-<th style="text-align: left;"><strong>MEM</strong></th>
-<th style="text-align: left;"><strong>WB</strong></th>
+<tr>
+<th style="text-align:left"><strong>指令类型</strong></th>
+<th style="text-align:left"><strong>IF</strong></th>
+<th style="text-align:left"><strong>ID</strong></th>
+<th style="text-align:left"><strong>EX</strong></th>
+<th style="text-align:left"><strong>MEM</strong></th>
+<th style="text-align:left"><strong>WB</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>R型指令</strong></td>
-<td style="text-align: left;">取指令</td>
-<td style="text-align: left;">译码并读寄存器</td>
-<td style="text-align: left;">执行算术运算</td>
-<td style="text-align: left;">无操作</td>
-<td style="text-align: left;">结果写回寄存器</td>
+<tr>
+<td style="text-align:left"><strong>R型指令</strong></td>
+<td style="text-align:left">取指令</td>
+<td style="text-align:left">译码并读寄存器</td>
+<td style="text-align:left">执行算术运算</td>
+<td style="text-align:left">无操作</td>
+<td style="text-align:left">结果写回寄存器</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><strong>lw指令</strong></td>
-<td style="text-align: left;">取指令</td>
-<td style="text-align: left;">译码并计算地址</td>
-<td style="text-align: left;">计算内存地址</td>
-<td style="text-align: left;">读取内存数据</td>
-<td style="text-align: left;">数据写回寄存器</td>
+<tr>
+<td style="text-align:left"><strong>lw指令</strong></td>
+<td style="text-align:left">取指令</td>
+<td style="text-align:left">译码并计算地址</td>
+<td style="text-align:left">计算内存地址</td>
+<td style="text-align:left">读取内存数据</td>
+<td style="text-align:left">数据写回寄存器</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>sw指令</strong></td>
-<td style="text-align: left;">取指令</td>
-<td style="text-align: left;">译码并计算地址</td>
-<td style="text-align: left;">计算内存地址</td>
-<td style="text-align: left;">写入内存数据</td>
-<td style="text-align: left;">无操作</td>
+<tr>
+<td style="text-align:left"><strong>sw指令</strong></td>
+<td style="text-align:left">取指令</td>
+<td style="text-align:left">译码并计算地址</td>
+<td style="text-align:left">计算内存地址</td>
+<td style="text-align:left">写入内存数据</td>
+<td style="text-align:left">无操作</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><strong>beq指令</strong></td>
-<td style="text-align: left;">取指令</td>
-<td style="text-align: left;">译码并比较值</td>
-<td style="text-align: left;">计算分支地址</td>
-<td style="text-align: left;">更新PC（若跳转）</td>
-<td style="text-align: left;">无操作</td>
+<tr>
+<td style="text-align:left"><strong>beq指令</strong></td>
+<td style="text-align:left">取指令</td>
+<td style="text-align:left">译码并比较值</td>
+<td style="text-align:left">计算分支地址</td>
+<td style="text-align:left">更新PC（若跳转）</td>
+<td style="text-align:left">无操作</td>
 </tr>
 </tbody>
 </table>
