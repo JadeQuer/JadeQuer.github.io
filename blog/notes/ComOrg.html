@@ -18,19 +18,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   image-20250312171512958    image-20250312171434540  符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指">
+    <meta name="description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指令的后半部分是三个字段            op rs rt rd shamt">
 <meta property="og:type" content="website">
 <meta property="og:title" content="计算机组成与系统结构">
 <meta property="og:url" content="https://jadequer.github.io/blog/notes/ComOrg.html">
 <meta property="og:site_name" content="Arctic&#39;s Blog">
-<meta property="og:description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   image-20250312171512958    image-20250312171434540  符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指">
+<meta property="og:description" content="第一章 计算机抽象及相关技术 CPI： 执行每条指令所需的平均时钟周期数 SPEC分值 &#x3D; 参考时间 &#x2F; 执行时间 第二章 指令：计算机的语言   符号扩展： 对有符号数，低位直接复制，高位全部填充为符号位 MIPS字段（32位）： R型指令格式： 用于寄存器，指令的后半部分是三个字段            op rs rt rd shamt">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250312171512958.png">
 <meta property="og:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250312171434540.png">
 <meta property="og:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250407161420655.png">
 <meta property="og:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250408111106422.png">
 <meta property="article:published_time" content="2025-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-08T03:14:00.814Z">
+<meta property="article:modified_time" content="2025-04-08T03:33:43.382Z">
 <meta property="article:author" content="Arctic">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250312171512958.png">
@@ -116,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%BD%E8%B1%A1%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">第一章 计算机抽象及相关技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8C%87%E4%BB%A4%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-text">第二章 指令：计算机的语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="nav-text">符号扩展：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mips%E5%AD%97%E6%AE%B532%E4%BD%8D"><span class="nav-text">MIPS字段（32位）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pc"><span class="nav-text">PC：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text">第三章 计算机的算数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BAieee-754%E6%A0%87%E5%87%86"><span class="nav-text">浮点表示：IEEE 754标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">第四章 处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%8D%95%E5%91%A8%E6%9C%9F%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-text">一、单周期数据通路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E5%9F%BA%E7%A1%80"><span class="nav-text">1.数字逻辑基础：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86"><span class="nav-text">2.MIPS核心子集：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="nav-text">3.指令周期：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-text">4.MIPS核心子集数据通路：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%95%E5%91%A8%E6%9C%9F%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">二、单周期控制单元：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#alu%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">1.ALU控制单元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7"><span class="nav-text">2.控制信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A6%E6%8E%A7%E5%88%B6%E7%9A%84mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-text">3.带控制的MIPS核心子集数据通路</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%BD%E8%B1%A1%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-text">第一章 计算机抽象及相关技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8C%87%E4%BB%A4%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-text">第二章 指令：计算机的语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="nav-text">符号扩展：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mips%E5%AD%97%E6%AE%B532%E4%BD%8D"><span class="nav-text">MIPS字段（32位）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pc"><span class="nav-text">PC：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text">第三章 计算机的算数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BAieee-754%E6%A0%87%E5%87%86"><span class="nav-text">浮点表示：IEEE 754标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">第四章 处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%8D%95%E5%91%A8%E6%9C%9F%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-text">一、单周期数据通路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E5%9F%BA%E7%A1%80"><span class="nav-text">1.数字逻辑基础：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86"><span class="nav-text">2.MIPS核心子集：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="nav-text">3.指令周期：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-text">4.MIPS核心子集数据通路：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%95%E5%91%A8%E6%9C%9F%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">二、单周期控制单元：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#alu%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">1.ALU控制单元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7"><span class="nav-text">2.控制信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A6%E6%8E%A7%E5%88%B6%E7%9A%84mips%E6%A0%B8%E5%BF%83%E5%AD%90%E9%9B%86%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-text">3.带控制的MIPS核心子集数据通路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7%E8%A1%A8"><span class="nav-text">4.指令控制信号表</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -199,16 +199,8 @@
 <p><strong>CPI：</strong> 执行每条指令所需的平均时钟周期数</p>
 <p><strong>SPEC分值</strong> = 参考时间 / 执行时间</p>
 <h2 id="第二章-指令计算机的语言">第二章 指令：计算机的语言</h2>
-<figure>
-<img src="ComOrg.assets/image-20250312171512958.png"
-alt="image-20250312171512958" />
-<figcaption aria-hidden="true">image-20250312171512958</figcaption>
-</figure>
-<figure>
-<img src="ComOrg.assets/image-20250312171434540.png"
-alt="image-20250312171434540" />
-<figcaption aria-hidden="true">image-20250312171434540</figcaption>
-</figure>
+<p><img src="ComOrg.assets/image-20250312171512958.png" /></p>
+<p><img src="ComOrg.assets/image-20250312171434540.png" /></p>
 <h3 id="符号扩展">符号扩展：</h3>
 <p>对有符号数，低位直接复制，高位全部填充为符号位</p>
 <h3 id="mips字段32位">MIPS字段（32位）：</h3>
@@ -428,8 +420,8 @@ alt="image-20250312171434540" />
 <h4 id="mips核心子集数据通路">4.MIPS核心子集数据通路：</h4>
 <figure>
 <img src="ComOrg.assets/image-20250407161420655.png"
-alt="image-20250407161420655" />
-<figcaption aria-hidden="true">image-20250407161420655</figcaption>
+alt="MIPS核心子集数据通路" />
+<figcaption aria-hidden="true">MIPS核心子集数据通路</figcaption>
 </figure>
 <h3 id="二单周期控制单元">二、单周期控制单元：</h3>
 <h4 id="alu控制单元">1.ALU控制单元</h4>
@@ -466,7 +458,9 @@ alt="image-20250407161420655" />
 </tr>
 </tbody>
 </table>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">	主控制单元 --ALUOp--&gt; ALU控制单元--若ALUOp=10--&gt;funct字段</span><br><span class="line">	funct字段 --&gt;主控制单元</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">flowchart LR
+    主控制单元 --ALUOp--> ALU控制单元--若ALUOp=10-->funct字段
+    funct字段 -->主控制单元</pre>
 <p>多级译码：由ALUOp和R型指令中的funct字段共同决定ALU控制线</p>
 <h4 id="控制信号">2.控制信号</h4>
 <p>每个周期都会进行读操作，所以不需要读使能</p>
@@ -486,9 +480,88 @@ source，选择ALU的源操作数，为<strong>1</strong>时选取符号扩展�
 id="带控制的mips核心子集数据通路">3.带控制的MIPS核心子集数据通路</h4>
 <figure>
 <img src="ComOrg.assets/image-20250408111106422.png"
-alt="image-20250408111106422" />
-<figcaption aria-hidden="true">image-20250408111106422</figcaption>
+alt="包含控制单元的简单数据通路" />
+<figcaption aria-hidden="true">包含控制单元的简单数据通路</figcaption>
 </figure>
+<h4 id="指令控制信号表">4.指令控制信号表</h4>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>指令</th>
+<th>RegDst</th>
+<th>ALUSrc</th>
+<th>MemtoReg</th>
+<th>RegWrite</th>
+<th>MemRead</th>
+<th>MemWrite</th>
+<th>Branch</th>
+<th>ALUOp1</th>
+<th>ALUOp0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R型指令</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>lw</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>sw</td>
+<td>X</td>
+<td>1</td>
+<td>X</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>beq</td>
+<td>X</td>
+<td>0</td>
+<td>X</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 
       </div>
       
