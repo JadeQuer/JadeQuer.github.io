@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250524213813588.png">
 <meta property="og:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250524213845326.png">
 <meta property="article:published_time" content="2025-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-30T15:18:23.746Z">
+<meta property="article:modified_time" content="2025-07-01T08:28:29.826Z">
 <meta property="article:author" content="Arctic">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jadequer.github.io/blog/notes/ComOrg.assets/image-20250312171512958.png">
@@ -501,11 +501,15 @@ alt="MIPS核心子集数据通路" />
 </tr>
 </tbody>
 </table>
+<pre>
+<code class="mermaid">
 
-<pre class="mermaid">flowchart LR
-	主控制单元 --ALUOp--> ALU控制单元--若ALUOp=10-->funct字段
-	funct字段 -->主控制单元</pre>
-
+flowchart LR
+    主控制单元 --ALUOp--&gt; ALU控制单元
+    ALU控制单元 --若ALUOp&#x3D;10--&gt; funct字段
+    funct字段 --&gt; 主控制单元
+</code>
+</pre>
 <p>多级译码：由ALUOp和R型指令中的funct字段共同决定ALU控制线</p>
 <h4 id="控制信号">2.控制信号</h4>
 <p>每个周期都会进行读操作，所以不需要读使能</p>
@@ -902,18 +906,21 @@ Buffer）。</p></li>
 </ul></li>
 </ol>
 <p>📌 总结流程图</p>
+<pre>
+<code class="mermaid">
 
-<pre class="mermaid">graph LR
-A[CPU 虚拟地址] --> B{TLB 命中？}
-B -- 是 --> C[获得物理地址]
-B -- 否 --> D[访问页表（内存）]
-D --> E{页表项有效？}
-E -- 是 --> F[更新 TLB] --> C
-E -- 否 --> G[缺页异常] --> H[磁盘加载数据到内存] --> I[更新页表] --> F
-C --> J{访问 Cache}
-J -- 命中 --> K[返回数据]
-J -- 缺失 --> L[访问内存] --> M[载入 Cache 块] --> K</pre>
-
+graph LR
+A[CPU 虚拟地址] --&gt; B{TLB 命中？}
+B -- 是 --&gt; C[获得物理地址]
+B -- 否 --&gt; D[访问页表（内存）]
+D --&gt; E{页表项有效？}
+E -- 是 --&gt; F[更新 TLB] --&gt; C
+E -- 否 --&gt; G[缺页异常] --&gt; H[磁盘加载数据到内存] --&gt; I[更新页表] --&gt; F
+C --&gt; J{访问 Cache}
+J -- 命中 --&gt; K[返回数据]
+J -- 缺失 --&gt; L[访问内存] --&gt; M[载入 Cache 块] --&gt; K
+</code>
+</pre>
 <ol type="1">
 <li><strong>页表查询失败 ≠
 直接访问内存数据</strong>，而是触发缺页异常（涉及磁盘 I/O）。<br />
