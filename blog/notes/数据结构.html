@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="时间复杂度需注意，把所有算法的复杂度记一下 第二章：链表 (A−B)∪(B−A)： 假设由终端输入集合元素，先建立表示集合A的静态链表S，而后在输入集合B的元素的同时查找S表，若存在和B相同的元素，则从S表中删除之，否则将此元素插入S表。 合并两个有序递增链表为递减链表： 1234567891011121314151617181920212223242526271. 初始化结果链表头指针">
+<meta property="og:type" content="website">
+<meta property="og:title" content="数据结构">
+<meta property="og:url" content="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">
+<meta property="og:site_name" content="Arctic&#39;s Blog">
+<meta property="og:description" content="时间复杂度需注意，把所有算法的复杂度记一下 第二章：链表 (A−B)∪(B−A)： 假设由终端输入集合元素，先建立表示集合A的静态链表S，而后在输入集合B的元素的同时查找S表，若存在和B相同的元素，则从S表中删除之，否则将此元素插入S表。 合并两个有序递增链表为递减链表： 1234567891011121314151617181920212223242526271. 初始化结果链表头指针">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.assets/image-20250613001623071.png">
+<meta property="og:image" content="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.assets/image-20250613002446807.png">
+<meta property="og:image" content="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.assets/image-20250613001739088.png">
+<meta property="og:image" content="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.assets/image-20250612202205562.png">
+<meta property="article:published_time" content="2025-07-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-09T12:31:08.496Z">
+<meta property="article:author" content="Arctic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.assets/image-20250613001623071.png">
+
+
+<link rel="canonical" href="https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://jadequer.github.io/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html","path":"blog/notes/数据结构.html","title":"数据结构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构 | Arctic's Blog
+</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arctic's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个CS学生的个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/me" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">2</span></a></li><li class="menu-item menu-item-blog"><a href="/blog/" rel="section"><i class="fa fa-list fa-fw"></i>blog</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%E9%93%BE%E8%A1%A8"><span class="nav-text">第二章：链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97"><span class="nav-text">第三章：栈和队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8"><span class="nav-text">第五章：稀疏矩阵和广义表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%E6%A0%91"><span class="nav-text">第六章：树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%E5%9B%BE"><span class="nav-text">第七章：图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%E6%9F%A5%E6%89%BE"><span class="nav-text">第八章：查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0%E6%8E%92%E5%BA%8F"><span class="nav-text">第九章：排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="nav-text">线性表（顺序存储）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-text">线性表（链式存储）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97"><span class="nav-text">栈与队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%84%E7%90%86"><span class="nav-text">表达式处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95"><span class="nav-text">递归算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%AE%97%E6%B3%95"><span class="nav-text">其他算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%B4%E6%98%8E"><span class="nav-text">关键说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">稀疏矩阵算法时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E8%A1%A8%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">广义表算法时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%B4%E6%98%8E-1"><span class="nav-text">关键说明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%80%BB%E7%BB%93"><span class="nav-text">树和二叉树算法时间复杂度总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%B4%E6%98%8E-2"><span class="nav-text">关键说明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-text">图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%B4%E6%98%8E-3"><span class="nav-text">关键说明：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arctic</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-build"><a href="/blog/process.html" rel="section"><i class="fa fa-wrench fa-fw"></i>build</a></li>
+
+
+      
+  <li class="menu-item menu-item-test"><a href="/blog/test.html" rel="section"><i class="fa fa-flask fa-fw"></i>test</a></li>
+
+
+      
+  <li class="menu-item menu-item-notes"><a href="/blog/notes/" rel="section"><i class="fa fa-book fa-fw"></i>notes</a></li>
+
+
+      
+  <li class="menu-item menu-item-records"><a href="/blog/records/" rel="section"><i class="fa fa-book fa-fw"></i>records</a></li>
+
+
+    </ul>
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-计算机组成与系统结构"><a href="/blog/notes/ComOrg.html" rel="section"><i class="fa fa-laptop fa-fw"></i>计算机组成与系统结构</a></li>
+
+
+      
+  <li class="menu-item menu-item-数据结构"><a href="/blog/notes/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html" rel="section"><i class="fa fa-database fa-fw"></i>数据结构</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">数据结构
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/blog/">BLOG</a></li>
+            <li><a href="/blog/notes/">NOTES</a></li>
+            <li>数据结构</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>时间复杂度需注意，把所有算法的复杂度记一下</p>
+<h2 id="第二章链表">第二章：链表</h2>
+<p>(A−B)∪(B−A)：</p>
+<p>假设由终端输入集合元素，先建立表示集合A的静态链表S，而后在输入集合B的元素的同时查找S表，若存在和B相同的元素，则从S表中删除之，否则将此元素插入S表。</p>
+<p>合并两个有序递增链表为递减链表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化结果链表头指针 result = NULL</span><br><span class="line">2. 初始化指针 p 和 q 分别指向链表 A 和 B 的头节点</span><br><span class="line">3. 循环直到 p 和 q 均为 NULL:</span><br><span class="line">   a. 如果 p 和 q 都不为 NULL:</span><br><span class="line">      i. 比较 p-&gt;data 和 q-&gt;data:</span><br><span class="line">         - 若 p-&gt;data &lt; q-&gt;data:</span><br><span class="line">             • 保存 p 的下一个节点 next = p-&gt;next</span><br><span class="line">             • 将 p 插入 result 头部：p-&gt;next = result, result = p</span><br><span class="line">             • p = next</span><br><span class="line">         - 若 p-&gt;data &gt; q-&gt;data:</span><br><span class="line">             • 保存 q 的下一个节点 next = q-&gt;next</span><br><span class="line">             • 将 q 插入 result 头部：q-&gt;next = result, result = q</span><br><span class="line">             • q = next</span><br><span class="line">         - 若 p-&gt;data == q-&gt;data:</span><br><span class="line">             • 保存 p 的下一个节点 next_p = p-&gt;next</span><br><span class="line">             • 将 p 插入 result 头部：p-&gt;next = result, result = p</span><br><span class="line">             • 跳过 q 节点：q = q-&gt;next</span><br><span class="line">             • p = next_p</span><br><span class="line">   b. 如果 p 不为 NULL 但 q 为 NULL:</span><br><span class="line">        • 保存 p 的下一个节点 next = p-&gt;next</span><br><span class="line">        • 将 p 插入 result 头部：p-&gt;next = result, result = p</span><br><span class="line">        • p = next</span><br><span class="line">   c. 如果 q 不为 NULL 但 p 为 NULL:</span><br><span class="line">        • 保存 q 的下一个节点 next = q-&gt;next</span><br><span class="line">        • 将 q 插入 result 头部：q-&gt;next = result, result = q</span><br><span class="line">        • q = next</span><br><span class="line">4. 返回结果链表头指针 result</span><br></pre></td></tr></table></figure>
+<p>链表的就地逆置伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">函数 reverseLinkedList(Node head):</span><br><span class="line">    if head == NULL 或 head.next == NULL:</span><br><span class="line">        return head  // 空链表或单节点链表直接返回</span><br><span class="line">    </span><br><span class="line">    Node prev = NULL   // 前驱节点指针</span><br><span class="line">    Node curr = head   // 当前节点指针</span><br><span class="line">    Node next = NULL   // 后继节点指针</span><br><span class="line">    </span><br><span class="line">    while curr != NULL:</span><br><span class="line">        next = curr.next  // 保存下一节点地址</span><br><span class="line">        curr.next = prev  // 反转当前节点指针</span><br><span class="line">        prev = curr       // prev指针前移</span><br><span class="line">        curr = next       // curr指针前移</span><br><span class="line">    </span><br><span class="line">    return prev  // prev最终指向新链表头</span><br></pre></td></tr></table></figure>
+<p>一元多项式加法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">结构体 Term:</span><br><span class="line">    coef  // 系数</span><br><span class="line">    expo  // 指数</span><br><span class="line">    next  // 指向下一项</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">函数 PolyAdd(poly1, poly2):</span><br><span class="line">    创建一个新链表 result 用于保存结果</span><br><span class="line">    p1 ← poly1 的头节点</span><br><span class="line">    p2 ← poly2 的头节点</span><br><span class="line"></span><br><span class="line">    while p1 ≠ null and p2 ≠ null:</span><br><span class="line">        if p1.expo &gt; p2.expo:</span><br><span class="line">            将 p1 当前项复制到 result 中</span><br><span class="line">            p1 ← p1.next</span><br><span class="line">        else if p1.expo &lt; p2.expo:</span><br><span class="line">            将 p2 当前项复制到 result 中</span><br><span class="line">            p2 ← p2.next</span><br><span class="line">        else:</span><br><span class="line">            coef_sum ← p1.coef + p2.coef</span><br><span class="line">            if coef_sum ≠ 0:</span><br><span class="line">                创建新项 (coef_sum, p1.expo)，加入 result</span><br><span class="line">            p1 ← p1.next</span><br><span class="line">            p2 ← p2.next</span><br><span class="line"></span><br><span class="line">    while p1 ≠ null:</span><br><span class="line">        将 p1 当前项复制到 result 中</span><br><span class="line">        p1 ← p1.next</span><br><span class="line"></span><br><span class="line">    while p2 ≠ null:</span><br><span class="line">        将 p2 当前项复制到 result 中</span><br><span class="line">        p2 ← p2.next</span><br><span class="line"></span><br><span class="line">    返回 result</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第三章栈和队列">第三章：栈和队列</h2>
+<p><strong>1、后缀表达式的求法：</strong></p>
+<p>若遇到操作数，进栈；若遇到操作符，两个操作数出栈，然后运算，运算结果进栈。表达式结束时，操作数(结果）出栈。</p>
+<p><strong>2、中缀表达式的求法：</strong></p>
+<p>自己写个算式模拟一下。</p>
+<p>扫描中缀表达式的每个字符：</p>
+<ul>
+<li>是数字：直接入 <strong>操作数栈</strong></li>
+<li>是左括号：入 <strong>运算符栈</strong></li>
+<li>是右括号：将运算符栈中操作符依次弹出并计算，直到遇到左括号</li>
+<li>是运算符（+ - * /）：根据优先级处理：
+<ul>
+<li>如果当前运算符优先级小于或等于栈顶运算符，先弹出栈顶运算符并计算，再将当前运算符入栈</li>
+<li>否则直接入栈</li>
+</ul></li>
+</ul>
+<p>扫描结束后，依次从运算符栈中弹出剩余运算符并计算。</p>
+<p><strong>3、中缀表达式转后缀：</strong></p>
+<blockquote>
+<p>准备一个运算符栈（存储运算符）。</p>
+<p>准备一个输出队列（存储最终的后缀表达式）。</p>
+<p>从左到右扫描表达式的每个符号：</p>
+<p>如果是操作数（数字、变量）：直接加入输出队列。</p>
+<p>如果是左括号 (：直接压入运算符栈。</p>
+<p>如果是右括号 )：</p>
+<p>依次弹出运算符栈的运算符，加入输出队列，直到遇到左括号 (。</p>
+<p>弹出 (（但不加入输出队列）。</p>
+<p>如果是运算符（如 + - * / ^）：</p>
+<p>如果运算符栈非空，且栈顶运算符的优先级大于或等于当前运算符：</p>
+<p>依次弹出栈顶运算符，并加入输出队列（直到栈顶运算符的优先级小于当前运算符或栈为空）。</p>
+<p>将当前运算符压入运算符栈。</p>
+<p>遍历完成后：</p>
+<p>如果运算符栈仍有运算符，依次弹出并加入输出队列（直到栈为空）。</p>
+</blockquote>
+<p>栈的链式存储：每次使用头插法，头节点即栈顶</p>
+<p><strong>队列求杨辉三角：</strong>ppt142页动画</p>
+<h2 id="第五章稀疏矩阵和广义表">第五章：稀疏矩阵和广义表</h2>
+<p><strong>稀疏矩阵快速转置：</strong>先求每一列非0元的个数，统计好（扫了一遍），这样就知道每一个列号的第一个元素在哪里。然后再扫一遍，每个元素都能直接对应过去（相应的统计表里的索引要加一）</p>
+<p><strong>稀疏矩阵乘法：</strong>A表只用扫一次，每次扫B表的时候把乘积直接累加到对应位置上去</p>
+<p>表头：第一个元素；表尾：剩下全部元素，再用括号括起来</p>
+<figure>
+<img src="数据结构.assets/image-20250613001623071.png"
+alt="image-20250613001623071" />
+<figcaption aria-hidden="true">image-20250613001623071</figcaption>
+</figure>
+<p>表头+下一个节点表示法：</p>
+<figure>
+<img src="数据结构.assets/image-20250613002446807.png"
+alt="image-20250613002446807" />
+<figcaption aria-hidden="true">image-20250613002446807</figcaption>
+</figure>
+<p><strong>广义表如何表示多项式</strong>：（系数，（指数列表））</p>
+<figure>
+<img src="数据结构.assets/image-20250613001739088.png"
+alt="image-20250613001739088" />
+<figcaption aria-hidden="true">image-20250613001739088</figcaption>
+</figure>
+<p>广义表深度：括弧重数</p>
+<h2 id="第六章树">第六章：树</h2>
+<p>遍历的递归算法</p>
+<p>左孩子右兄弟表示法：左孩子是第一个孩子节点</p>
+<p>哈夫曼树，求平均编码长度（码的长度/码的个数）</p>
+<p>大部分会了感觉没什么难的</p>
+<h2 id="第七章图">第七章：图</h2>
+<p>图的深度优先，广度优先遍历</p>
+<p>最小生成树：生成树是连通图的一个极小连通子图，最小即权值之和最小（一个点一个点画出来就行）</p>
+<ul>
+<li>Prim：寻找连接U和V-U这两个集合的权值最小的边</li>
+<li>Kruskal：每次选代价最小的边先连起来（如果点已经加入就不连，看PPT很直观）</li>
+</ul>
+<p>关节点：复习重点中没提但是PPT上打了很多星（说了不太重要）</p>
+<p>最短路径：</p>
+<ul>
+<li>Dijkstra：依次求从V出发的最短路径，下一条最短路径要么是V直达，要么是集合中的点转达</li>
+<li>Floyd：求每一对顶点间最短路径。b站视频很好懂。（每轮定k行k列与主对角线，对应行列值相加与现有比较后取小）</li>
+</ul>
+<p>拓扑排序（如果能将所有点输出则为有向无环图）：</p>
+<p>（1）在有向图中选取一个没有前驱的顶点（入度为0）且输出之；（2）从图中删去该顶点和所有以它为尾的弧。</p>
+<p>关键路径：最长路径（完成所有工程的最短时间即为从开始点到完成点的最长路径的长度）</p>
+<h2 id="第八章查找">第八章：查找</h2>
+<p>二叉排序（搜索）树；平衡二叉树（AVL）：可能要弄清怎么旋（b站视频好懂，先找到不平衡的节点，沿新加入的节点方向找与之相邻的三个节点）</p>
+<p>哈希表：</p>
+<p>线性探测再散列：di = 1, 2, 3, …, m-1</p>
+<p>二次探测再散列：di = 12, -12, 22, -22, …, k2, -k2(k &lt;=m/2)</p>
+<p>查找成功和查找不成功时的平均查找次数计算（成功时，除的是表里已有的个数；失败时，除的哈希值的值域（不是表长）</p>
+<h2 id="第九章排序">第九章：排序</h2>
+<p>折半插入排序：插入排序结合二分法</p>
+<p>shell排序</p>
+<p>树形选择排序（锦标赛排序）：每次两两比较的结果是把关键码小者作为优胜者上升到双亲结点，称这种比赛树为胜者树。</p>
+<p>堆排序（可能需要计算比较次数）</p>
+<p>基数排序（看PPT动画就可明白）</p>
+<p>堆排序、快速、归并、锦标赛：nlog<sub>2</sub>n</p>
+<p>不稳定的：shell、直接选择、堆、快速</p>
+<figure>
+<img src="数据结构.assets/image-20250612202205562.png"
+alt="image-20250612202205562" />
+<figcaption aria-hidden="true">image-20250612202205562</figcaption>
+</figure>
+<h2 id="时间复杂度">时间复杂度</h2>
+<p>以下是根据课件内容整理的算法时间复杂度汇总表，按数据结构和算法类型分类：</p>
+<h3 id="线性表顺序存储"><strong>线性表（顺序存储）</strong></h3>
+<table>
+<thead>
+<tr class="header">
+<th><strong>操作</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>插入操作</td>
+<td>O(n)</td>
+<td>平均移动n/2个元素</td>
+</tr>
+<tr class="even">
+<td>删除操作</td>
+<td>O(n)</td>
+<td>平均移动(n-1)/2个元素</td>
+</tr>
+<tr class="odd">
+<td>按值查找</td>
+<td>O(n)</td>
+<td>平均比较(n+1)/2次</td>
+</tr>
+<tr class="even">
+<td>按序号存取</td>
+<td>O(1)</td>
+<td>直接通过下标访问</td>
+</tr>
+<tr class="odd">
+<td>有序表合并</td>
+<td>O(m+n)</td>
+<td>m和n分别为两个表的长度</td>
+</tr>
+<tr class="even">
+<td>集合求并</td>
+<td>O(m×n)</td>
+<td>需遍历两个集合的所有元素</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="线性表链式存储"><strong>线性表（链式存储）</strong></h3>
+<table>
+<thead>
+<tr class="header">
+<th><strong>操作</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>头插法建表</td>
+<td>O(n)</td>
+<td>n为元素个数</td>
+</tr>
+<tr class="even">
+<td>尾插法建表</td>
+<td>O(n)</td>
+<td>需维护尾指针</td>
+</tr>
+<tr class="odd">
+<td>按序号查找</td>
+<td>O(n)</td>
+<td>平均遍历n/2个结点</td>
+</tr>
+<tr class="even">
+<td>按值查找</td>
+<td>O(n)</td>
+<td>平均遍历n/2个结点</td>
+</tr>
+<tr class="odd">
+<td>插入结点</td>
+<td>O(1)</td>
+<td><strong>已知位置时</strong>（需查找则为O(n)）</td>
+</tr>
+<tr class="even">
+<td>删除结点</td>
+<td>O(1)</td>
+<td><strong>已知位置时</strong>（需查找则为O(n)）</td>
+</tr>
+<tr class="odd">
+<td>有序链表合并</td>
+<td>O(m+n)</td>
+<td>遍历两个链表的所有结点</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="栈与队列"><strong>栈与队列</strong></h3>
+<table>
+<thead>
+<tr class="header">
+<th><strong>数据结构</strong></th>
+<th><strong>操作</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>顺序栈</td>
+<td>Push/Pop</td>
+<td>O(1)</td>
+<td>栈顶操作</td>
+</tr>
+<tr class="even">
+<td>链栈</td>
+<td>Push/Pop</td>
+<td>O(1)</td>
+<td>栈顶操作</td>
+</tr>
+<tr class="odd">
+<td>循环队列</td>
+<td>enQueue/deQueue</td>
+<td>O(1)</td>
+<td>队头/队尾指针移动</td>
+</tr>
+<tr class="even">
+<td>链队列</td>
+<td>enQueue/deQueue</td>
+<td>O(1)</td>
+<td>维护头尾指针</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="表达式处理"><strong>表达式处理</strong></h3>
+<table>
+<thead>
+<tr class="header">
+<th><strong>算法</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>中缀表达式求值</td>
+<td>O(n)</td>
+<td>n为表达式长度，需扫描所有字符</td>
+</tr>
+<tr class="even">
+<td>中缀转后缀</td>
+<td>O(n)</td>
+<td>每个字符入栈或输出一次</td>
+</tr>
+<tr class="odd">
+<td>后缀表达式求值</td>
+<td>O(n)</td>
+<td>每个操作符执行一次计算</td>
+</tr>
+<tr class="even">
+<td>括号匹配</td>
+<td>O(n)</td>
+<td>每个括号入栈或出栈一次</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="递归算法"><strong>递归算法</strong></h3>
+<table>
+<thead>
+<tr class="header">
+<th><strong>算法</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>阶乘（递归）</td>
+<td>O(n)</td>
+<td>递归深度为n</td>
+</tr>
+<tr class="even">
+<td>阶乘（非递归）</td>
+<td>O(n)</td>
+<td>单层循环</td>
+</tr>
+<tr class="odd">
+<td>斐波那契（递归）</td>
+<td>O(2<sup>n</sup>)</td>
+<td>指数级，存在重复计算</td>
+</tr>
+<tr class="even">
+<td>斐波那契（非递归）</td>
+<td>O(n)</td>
+<td>单层循环</td>
+</tr>
+<tr class="odd">
+<td>汉诺塔</td>
+<td>O(2<sup>n</sup>)</td>
+<td>递归调用次数为2^n-1</td>
+</tr>
+<tr class="even">
+<td>背包问题（递归）</td>
+<td>O(2<sup>n</sup>)</td>
+<td>最坏情况需遍历所有子集组合</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="其他算法"><strong>其他算法</strong></h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 21%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>算法</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>迷宫求解</td>
+<td>O(k)</td>
+<td>k为路径长度，依赖具体迷宫结构</td>
+</tr>
+<tr class="even">
+<td>多项式加法</td>
+<td>O(m+n)</td>
+<td>m和n分别为两个多项式的项数</td>
+</tr>
+<tr class="odd">
+<td>集合划分（无冲突子集）</td>
+<td>O(n<sup>2</sup>)</td>
+<td>需检查元素间的冲突关系</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键说明"><strong>关键说明</strong></h3>
+<ol type="1">
+<li><strong>链表操作</strong>：插入/删除在已知位置时为O(1)，但查找位置仍需O(n)。</li>
+<li><strong>递归算法</strong>：斐波那契和汉诺塔的指数级复杂度源于重复子问题，可通过记忆化优化。</li>
+<li><strong>表达式处理</strong>：中缀转后缀和求值均需扫描表达式一次，时间复杂度与表达式长度线性相关。</li>
+<li><strong>集合运算</strong>：并集/交集的时间复杂度取决于实现方式（如暴力匹配为O(m×n)，排序后合并可优化至O(mlogm+nlogn)）。</li>
+</ol>
+<blockquote>
+<p>此表格完全基于课件中明确提及或可推导的时间复杂度分析整理而成。未明确分析的算法（如静态链表操作）未包含在内。</p>
+</blockquote>
+<p>根据课件内容，我将稀疏矩阵和广义表相关算法的时间复杂度整理如下表格：</p>
+<h3
+id="稀疏矩阵算法时间复杂度"><strong>稀疏矩阵算法时间复杂度</strong></h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 24%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>算法名称</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>适用条件/备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>朴素转置算法</strong></td>
+<td>O(nu × tu)</td>
+<td>最坏情况 O(mu × nu²)（当 tu ≈ mu×nu 时）</td>
+</tr>
+<tr class="even">
+<td><strong>快速转置算法</strong></td>
+<td>O(nu + tu)</td>
+<td>利用 <code>num</code> 和 <code>cpot</code> 数组优化列扫描</td>
+</tr>
+<tr class="odd">
+<td><strong>行逻辑链接矩阵乘法</strong></td>
+<td>O(mu × nu + tu × tu_B / nu)</td>
+<td>A(mu×nu), B(nu×tu)，依赖非零元分布；当 tu_A, tu_B 稀疏时远优于传统
+O(mu×nu×tu)</td>
+</tr>
+<tr class="even">
+<td><strong>二维数组传统乘法</strong></td>
+<td>O(mu × nu × tu)</td>
+<td>密集矩阵标准算法，作为对比基准</td>
+</tr>
+</tbody>
+</table>
+<h3 id="广义表算法时间复杂度"><strong>广义表算法时间复杂度</strong></h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>算法名称</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>求广义表深度</strong></td>
+<td>O(n)</td>
+<td>n为广义表元素总数，需递归遍历所有结点</td>
+</tr>
+<tr class="even">
+<td><strong>复制广义表</strong></td>
+<td>O(n)</td>
+<td>n为广义表元素总数，递归复制每个结点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键说明-1"><strong>关键说明：</strong></h3>
+<ol type="1">
+<li><strong>稀疏矩阵变量含义</strong>：
+<ul>
+<li><code>mu</code>：矩阵行数</li>
+<li><code>nu</code>：矩阵列数</li>
+<li><code>tu</code>：非零元素个数</li>
+<li><code>tu_B</code>：矩阵B的非零元素个数</li>
+</ul></li>
+<li><strong>时间复杂度优化核心</strong>：
+<ul>
+<li><strong>快速转置</strong>：通过 <code>cpot</code>
+数组直接定位转置后位置，避免全矩阵扫描。</li>
+<li><strong>矩阵乘法</strong>：利用 <code>rpos</code>
+数组快速定位行/列非零元，跳过零元素相乘。</li>
+</ul></li>
+<li><strong>广义表特性</strong>：
+<ul>
+<li>递归算法占主导，时间复杂度与结点总数线性相关。</li>
+<li>深度计算中需遍历所有子表层次（例如
+<code>D=( (), (e), (a, (b,c,d))</code> 的深度为3）。</li>
+</ul></li>
+</ol>
+<blockquote>
+<p>注：十字链表（<code>CrossList</code>）的创建算法未明确给出时间复杂度，因其依赖输入数据的排序方式，未列入表格。实际应用中，若输入有序可优化至
+O(tu)，无序则为 O(tu × max(mu, nu))。</p>
+</blockquote>
+<p>根据课件内容，我将树和二叉树章节中涉及到的算法时间复杂度整理如下表格：</p>
+<h3
+id="树和二叉树算法时间复杂度总结"><strong>树和二叉树算法时间复杂度总结</strong></h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 14%" />
+<col style="width: 12%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>算法类别</strong></th>
+<th><strong>算法名称</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>空间复杂度</strong></th>
+<th><strong>关键说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>二叉树遍历</strong></td>
+<td>递归先序/中序/后序遍历</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>h为树高，递归栈空间</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>非递归先序遍历</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>显式栈空间（h为树高）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>非递归中序遍历</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>显式栈空间</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>非递归后序遍历</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>需二次进栈+标记，栈空间</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>层次遍历</td>
+<td>O(n)</td>
+<td>O(w)</td>
+<td>w为树最大宽度（队列空间）</td>
+</tr>
+<tr class="even">
+<td><strong>二叉树操作</strong></td>
+<td>求结点个数</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>递归遍历所有结点</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>求二叉树深度</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>递归遍历，空间为递归深度</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>创建二叉树（先序）</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>递归创建</td>
+</tr>
+<tr class="odd">
+<td><strong>线索二叉树</strong></td>
+<td>中序线索化（递归）</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>递归遍历并修改指针</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>中序线索化（非递归）</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>显式栈空间</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>中序遍历线索二叉树</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td><strong>无需栈</strong>，沿线索遍历</td>
+</tr>
+<tr class="even">
+<td><strong>哈夫曼树</strong></td>
+<td>构造哈夫曼树</td>
+<td>O(n²) 或 O(nlogn)</td>
+<td>O(n)</td>
+<td>经典实现O(n²)，堆优化O(nlogn)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>哈夫曼编码（自底向上）</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>从叶子到根生成编码（需先构造哈夫曼树）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>哈夫曼编码（自顶向下）</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>递归遍历哈夫曼树生成编码</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>哈夫曼译码</td>
+<td>O(m)</td>
+<td>O(1)</td>
+<td>m为码文长度，沿树解码</td>
+</tr>
+<tr class="even">
+<td><strong>树/森林遍历</strong></td>
+<td>先根遍历</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>n为结点数，h为树高</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>后根遍历</td>
+<td>O(n)</td>
+<td>O(h)</td>
+<td>递归或栈实现</td>
+</tr>
+<tr class="even">
+<td><strong>二叉树的构造</strong></td>
+<td>由先序+中序序列重建</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>递归分割序列，最坏O(n²)（可用哈希优化到O(n)）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>由后序+中序序列重建</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>类似先序+中序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键说明-2"><strong>关键说明：</strong></h3>
+<ol type="1">
+<li><strong>二叉树遍历</strong>：
+<ul>
+<li><strong>递归遍历</strong>：时间O(n)，空间O(h)（h为树高，最坏链状O(n)）。</li>
+<li><strong>非递归遍历</strong>：均需显式栈，空间O(h)。</li>
+<li><strong>层次遍历</strong>：队列空间O(w)（w为树最大宽度，满二叉树时w=2ʰ⁻¹）。</li>
+<li><strong>线索二叉树遍历</strong>：核心优势是<strong>空间O(1)</strong>，适合频繁遍历场景。</li>
+</ul></li>
+<li><strong>哈夫曼树</strong>：
+<ul>
+<li><strong>构造算法</strong>：经典实现（选择排序找最小权值）为O(n²)，若用优先队列（堆）可优化至O(nlogn)。</li>
+<li><strong>编码/译码</strong>：编码生成需遍历树（O(n)），译码效率O(m)（m为码文长度）。</li>
+</ul></li>
+<li><strong>树与二叉树的转换</strong>：
+<ul>
+<li>转换过程本质是<strong>指针调整</strong>，时间复杂度O(n)，未单独列出。</li>
+</ul></li>
+<li><strong>二叉树重建</strong>：
+<ul>
+<li><strong>先序/后序+中序</strong>：递归分割中序序列，最坏O(n²)（扫描找根节点），可用哈希表存储中序位置优化到O(n)。</li>
+</ul></li>
+</ol>
+<blockquote>
+<p>注：课件中未明确给出的算法（如树的后根遍历非递归实现）未列入表格。实际应用中，非递归遍历通常用栈模拟递归，空间复杂度取决于树高。</p>
+</blockquote>
+<h3 id="图">图</h3>
+<p>以下是PPT中涉及算法的时间复杂度总结表格：</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 23%" />
+<col style="width: 22%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>算法名称</strong></th>
+<th><strong>应用场景/存储结构</strong></th>
+<th><strong>时间复杂度</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>邻接矩阵创建</strong></td>
+<td>图的存储</td>
+<td>(O(n^2 + e n))</td>
+<td>(n)为顶点数，(e)为边数</td>
+</tr>
+<tr class="even">
+<td><strong>邻接表创建</strong></td>
+<td>图的存储</td>
+<td>(O(n + e))</td>
+<td>若输入顶点编号则为(O(n + e))</td>
+</tr>
+<tr class="odd">
+<td><strong>十字链表创建</strong></td>
+<td>有向图存储</td>
+<td>(O(n + e))</td>
+<td>同邻接表</td>
+</tr>
+<tr class="even">
+<td><strong>邻接多重表创建</strong></td>
+<td>无向图存储</td>
+<td>(O(n + e))</td>
+<td>同邻接表</td>
+</tr>
+<tr class="odd">
+<td><strong>DFS/BFS遍历（邻接矩阵）</strong></td>
+<td>图的遍历</td>
+<td>(O(n<sup>2</sup>))</td>
+<td>需遍历整个矩阵</td>
+</tr>
+<tr class="even">
+<td><strong>DFS/BFS遍历（邻接表）</strong></td>
+<td>图的遍历</td>
+<td>(O(n + e))</td>
+<td>仅遍历顶点和边</td>
+</tr>
+<tr class="odd">
+<td><strong>连通分量检测</strong></td>
+<td>无向图连通性</td>
+<td>(O(n + e))</td>
+<td>基于DFS/BFS</td>
+</tr>
+<tr class="even">
+<td><strong>生成森林构建</strong></td>
+<td>非连通图</td>
+<td>(O(n + e))</td>
+<td>DFS实现</td>
+</tr>
+<tr class="odd">
+<td><strong>Prim算法</strong></td>
+<td>最小生成树（邻接矩阵）</td>
+<td>(O(n<sup>2</sup>))</td>
+<td>适合稠密图</td>
+</tr>
+<tr class="even">
+<td><strong>Kruskal算法</strong></td>
+<td>最小生成树</td>
+<td>(O(e e))</td>
+<td>适合稀疏图</td>
+</tr>
+<tr class="odd">
+<td><strong>Dijkstra算法</strong></td>
+<td>单源最短路径（邻接矩阵）</td>
+<td>(O(n<sup>2</sup>))</td>
+<td>无负权边</td>
+</tr>
+<tr class="even">
+<td><strong>Floyd算法</strong></td>
+<td>所有顶点对最短路径</td>
+<td>(O(n<sup>3</sup>))</td>
+<td>三重循环</td>
+</tr>
+<tr class="odd">
+<td><strong>拓扑排序</strong></td>
+<td>DAG的线性序列</td>
+<td>(O(n + e))</td>
+<td>需计算入度</td>
+</tr>
+<tr class="even">
+<td><strong>关键路径</strong></td>
+<td>AOE网工期计算</td>
+<td>(O(n + e))</td>
+<td>基于拓扑排序</td>
+</tr>
+<tr class="odd">
+<td><strong>关节点检测</strong></td>
+<td>重连通图判定</td>
+<td>(O(n + e))</td>
+<td>DFS中计算low值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键说明-3">关键说明：</h3>
+<ol type="1">
+<li><strong>符号定义</strong>：(n) = 顶点数，(e) = 边数（或弧数）。</li>
+<li><strong>存储结构影响</strong>：
+<ul>
+<li>邻接矩阵：空间复杂度(O(n^2))，适合稠密图。</li>
+<li>邻接表：空间复杂度(O(n + e))，适合稀疏图。</li>
+</ul></li>
+<li><strong>特殊场景</strong>：
+<ul>
+<li>Prim算法在邻接表+堆优化下可优化至(O(e
+n))，但PPT中默认邻接矩阵实现。</li>
+<li>Kruskal算法复杂度主要来自边排序（(O(e e))）。</li>
+</ul></li>
+<li><strong>算法关联性</strong>：
+<ul>
+<li>拓扑排序和关键路径均依赖图的遍历，时间复杂度相同。</li>
+<li>关节点检测本质是DFS的扩展，增加low值计算不改变复杂度。</li>
+</ul></li>
+</ol>
+<blockquote>
+<p>此表格覆盖PPT第七章全部核心算法的时间复杂度分析，可用于快速对比和复习。</p>
+</blockquote>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 17%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>算法名称</strong></th>
+<th style="text-align: left;"><strong>应用场景/操作</strong></th>
+<th style="text-align: left;"><strong>平均时间复杂度</strong></th>
+<th style="text-align: left;"><strong>最坏时间复杂度</strong></th>
+<th style="text-align: left;"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>顺序查找</strong></td>
+<td style="text-align: left;">无序/有序线性表</td>
+<td style="text-align: left;">O(n)</td>
+<td style="text-align: left;">O(n)</td>
+<td style="text-align: left;">适用于小规模或无序数据</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>二分查找</strong></td>
+<td style="text-align: left;">有序顺序表</td>
+<td style="text-align: left;">O(log n)</td>
+<td style="text-align: left;">O(log n)</td>
+<td style="text-align: left;">要求有序且顺序存储</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>分块查找</strong></td>
+<td style="text-align: left;">索引顺序结构</td>
+<td style="text-align: left;">O(√n)</td>
+<td style="text-align: left;">O(√n)</td>
+<td style="text-align: left;">块间有序，块内无序</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>平衡二叉树(AVL)</strong></td>
+<td style="text-align: left;">动态查找表</td>
+<td style="text-align: left;">O(log<sub>2</sub>n)</td>
+<td style="text-align: left;">O(log n)</td>
+<td style="text-align: left;">通过旋转保持平衡</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>哈希表（链地址法）</strong></td>
+<td style="text-align: left;">快速检索</td>
+<td style="text-align: left;">O(1+α)</td>
+<td style="text-align: left;">O(n)</td>
+<td style="text-align: left;">α为装填因子，α=n/m</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>哈希表（开放定址法）</strong></td>
+<td style="text-align: left;">快速检索</td>
+<td style="text-align: left;">1/(1-α)</td>
+<td style="text-align: left;">O(n)</td>
+<td style="text-align: left;">线性探测易产生聚集</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>次优查找树构造</strong></td>
+<td style="text-align: left;">静态查找优化</td>
+<td style="text-align: left;">O(n²)</td>
+<td style="text-align: left;">O(n²)</td>
+<td style="text-align: left;">基于权值构造近似最优树</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>次优查找树检索</strong></td>
+<td style="text-align: left;">静态查找优化</td>
+<td style="text-align: left;">O(log n)</td>
+<td style="text-align: left;">O(log n)</td>
+<td style="text-align: left;">树结构近似平衡</td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/">BLOG</a></li>
+            <li><a href="/blog/notes/">NOTES</a></li>
+            <li>数据结构</li>
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arctic</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/JadeQuer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
