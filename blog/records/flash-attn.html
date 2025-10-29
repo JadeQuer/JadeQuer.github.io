@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法： 1、通过从 GitHub Releases 页面下载正确的轮文件 https:&#x2F;&#x2F;github.com&#x2F;Dao-AILab&#x2F;flash-attention&#x2F;releases 选择合适版本，如本项目要求的python 3.10, cuda 12.4, torch 2.4将选择以下版本 https:&#x2F;&#x2F;gi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="安装flash-attn">
+<meta property="og:url" content="https://jadequer.github.io/blog/records/flash-attn.html">
+<meta property="og:site_name" content="Arctic&#39;s Blog">
+<meta property="og:description" content="直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法： 1、通过从 GitHub Releases 页面下载正确的轮文件 https:&#x2F;&#x2F;github.com&#x2F;Dao-AILab&#x2F;flash-attention&#x2F;releases 选择合适版本，如本项目要求的python 3.10, cuda 12.4, torch 2.4将选择以下版本 https:&#x2F;&#x2F;gi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jadequer.github.io/blog/records/flash-attn.assets/image-20251027200248889.png">
+<meta property="article:published_time" content="2025-10-29T02:02:04.000Z">
+<meta property="article:modified_time" content="2025-10-29T04:32:06.612Z">
+<meta property="article:author" content="Arctic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jadequer.github.io/blog/records/flash-attn.assets/image-20251027200248889.png">
+
+
+<link rel="canonical" href="https://jadequer.github.io/blog/records/flash-attn">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://jadequer.github.io/blog/records/flash-attn.html","path":"blog/records/flash-attn.html","title":"安装flash-attn"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>安装flash-attn | Arctic's Blog
+</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arctic's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个CS学生的个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/me" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">2</span></a></li><li class="menu-item menu-item-blog"><a href="/blog/" rel="section"><i class="fa fa-list fa-fw"></i>blog</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arctic</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">安装flash-attn
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/blog/">BLOG</a></li>
+            <li><a href="/blog/records/">RECORDS</a></li>
+            <li>FLASH-ATTN</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法：</p>
+<p>1、通过从 GitHub Releases 页面下载正确的轮文件</p>
+<p>https://github.com/Dao-AILab/flash-attention/releases</p>
+<p>选择合适版本，如本项目要求的python 3.10, cuda 12.4, torch
+2.4将选择以下版本</p>
+<p>https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.4cxx11abiTRUE-cp310-cp310-linux_x86_64.whl</p>
+<p>命令为：<code>pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.4cxx11abiTRUE-cp310-cp310-linux_x86_64.whl</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
+<p>运行bash.sh后报如下错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(magi) root@7s6go2hlu6o82-0:/duwenqing/JIANGQINRU/MAGI-1# bash example/4.5B/run.sh</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/pipeline/entry.py&quot;</span>, line 18, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from inference.pipeline import MagiPipeline</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/pipeline/__init__.py&quot;</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from .pipeline import MagiPipeline</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/pipeline/pipeline.py&quot;</span>, line 20, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from inference.model.dit import get_dit</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/model/dit/__init__.py&quot;</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from .dit_model import get_dit</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/model/dit/dit_model.py&quot;</span>, line 39, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from .dit_module import CaptionEmbedder, FinalLinear, LearnableRotaryEmbeddingCat, TimestepEmbedder, TransformerBlock</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/model/dit/dit_module.py&quot;</span>, line 27, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from flash_attn import flash_attn_varlen_func</span><br><span class="line">  File <span class="string">&quot;/duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/flash_attn/__init__.py&quot;</span>, line 3, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from flash_attn.flash_attn_interface import (</span><br><span class="line">  File <span class="string">&quot;/duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py&quot;</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    import flash_attn_2_cuda as flash_attn_gpu</span><br><span class="line">ImportError: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32<span class="string">&#x27; not found (required by /duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/flash_attn_2_cuda.cpython-310-x86_64-linux-gnu.so)</span></span><br></pre></td></tr></table></figure>
+<p>由于系统是ubuntu20.04，安装上面版本依旧无法运行，glibc（GNU
+C库）版本过低，而 <code>flash-attn</code>
+的二进制扩展模块（<code>.so</code> 文件）是在一个 <strong>glibc ≥
+2.32</strong> 的系统上编译的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd --version</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd (Ubuntu GLIBC 2.31-0ubuntu9.14) 2.31</span><br></pre></td></tr></table></figure>
+<p>由于直接根据python 3.10, cuda 12.4, torch
+2.4匹配到的是2.8.3版本，而requirement.txt中是2.4.2，可能安装2.4.2能解决</p>
+<p>2、安装requirement.txt中的2.4.2版本（可能有用，也可能没用），根据chatgpt提示，装预编译
+wheel：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(magi) root@7s6go2hlu6o82-0:/duwenqing# pip install flash-attn==2.4.2 --index-url https://flash-attention-wheels.s3.us-west-2.amazonaws.com/whl/cu124/torch2.4/index.html</span><br><span class="line">Looking <span class="keyword">in</span> indexes: https://flash-attention-wheels.s3.us-west-2.amazonaws.com/whl/cu124/torch2.4/index.html, https://pypi.ngc.nvidia.com</span><br><span class="line"></span><br><span class="line">ERROR: Could not find a version that satisfies the requirement flash-attn==2.4.2 (from versions: none)</span><br><span class="line">ERROR: No matching distribution found <span class="keyword">for</span> flash-attn==2.4.2</span><br><span class="line">(magi) root@7s6go2hlu6o82-0:/duwenqing# nvcc -V</span><br><span class="line">nvcc: NVIDIA (R) Cuda compiler driver</span><br><span class="line">Copyright (c) 2005-2025 NVIDIA Corporation</span><br><span class="line">Built on Wed_Apr__9_19:24:57_PDT_2025</span><br><span class="line">Cuda compilation tools, release 12.9, V12.9.41</span><br><span class="line">Build cuda_12.9.r12.9/compiler.35813241_0</span><br></pre></td></tr></table></figure>
+<p>这个输出表明，现在的 系统 CUDA 编译器（12.9）比 PyTorch 的 runtime
+CUDA（12.4）高一个大版本。这会导致 flash-attn 的 wheel
+源（cu124/torch2.4）找不到匹配项，因为官方还没提供针对 CUDA 12.9 + Torch
+2.4 的预编译包。</p>
+<p>所以，保持 Torch 2.4，不动，降级 CUDA toolkit：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c nvidia cuda-toolkit=12.1</span><br></pre></td></tr></table></figure>
+<p>还是不行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(magi) root@7s6go2hlu6o82-0:/duwenqing# pip install flash-attn==2.4.2 --index-url https://flash-attention-wheels.s3.us-west-2.amazonaws.com/whl/cu121/torch2.4/index.html</span><br><span class="line"></span><br><span class="line">Looking <span class="keyword">in</span> indexes: https://flash-attention-wheels.s3.us-west-2.amazonaws.com/whl/cu121/torch2.4/index.html, https://pypi.ngc.nvidia.com</span><br><span class="line">ERROR: Could not find a version that satisfies the requirement flash-attn==2.4.2 (from versions: none)</span><br><span class="line">ERROR: No matching distribution found <span class="keyword">for</span> flash-attn==2.4.2</span><br></pre></td></tr></table></figure>
+<p>下面来自GitHub Releases 页面：</p>
+<figure>
+<img src="flash-attn.assets/image-20251027200248889.png"
+alt="image-20251027200248889" />
+<figcaption aria-hidden="true">image-20251027200248889</figcaption>
+</figure>
+<p>如果要装2.4.2，那么torch和cuda版本都不能按照README中来，可能最后项目也运行不起来</p>
+<p>以下是MAGI-1的README：</p>
+<p><strong>Run with Docker Environment (Recommend)</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull sandai/magi:latest</span><br><span class="line"></span><br><span class="line">docker run -it --gpus all --privileged --shm-size=32g --name magi --net=host --ipc=host --<span class="built_in">ulimit</span> memlock=-1 --<span class="built_in">ulimit</span> stack=6710886 sandai/magi:latest /bin/bash</span><br></pre></td></tr></table></figure>
+<p><strong>Run with Source Code</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a new environment</span></span><br><span class="line">conda create -n magi python==3.10.12</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install pytorch</span></span><br><span class="line">conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install other dependencies</span></span><br><span class="line">pip install -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install ffmpeg</span></span><br><span class="line">conda install -c conda-forge ffmpeg=4.4</span><br><span class="line"></span><br><span class="line"><span class="comment"># For GPUs based on the Hopper architecture (e.g., H100/H800), it is recommended to install MagiAttention(https://github.com/SandAI-org/MagiAttention) for acceleration. For non-Hopper GPUs, installing MagiAttention is not necessary.</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:SandAI-org/MagiAttention.git</span><br><span class="line"><span class="built_in">cd</span> MagiAttention</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line">pip install --no-build-isolation .</span><br></pre></td></tr></table></figure>
+<p>最后有一个从源码编译 flash-attn的办法，会在当前系统环境下链接本地
+glibc。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall -y flash-attn</span><br><span class="line">pip install flash-attn==2.4.2 --no-build-isolation --no-cache-dir</span><br></pre></td></tr></table></figure>
+<p>但是一直卡住,，可能是显卡和 CPU不够：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEPRECATION: Building <span class="string">&#x27;flash-attn&#x27;</span> using the legacy setup.py bdist_wheel mechanism, <span class="built_in">which</span> will be removed <span class="keyword">in</span> a future version. pip 25.3 will enforce this behaviour change. A possible replacement is to use the standardized build interface by setting the --use-pep517 option, (possibly combined with --no-build-isolation), or adding a pyproject.toml file to the <span class="built_in">source</span> tree of <span class="string">&#x27;flash-attn&#x27;</span>. Discussion can be found at https://github.com/pypa/pip/issues/6334 </span><br><span class="line">Building wheel <span class="keyword">for</span> flash-attn (setup.py) ... /</span><br></pre></td></tr></table></figure>
+<p>执行free -h 查看内存和swap空间：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(magi_try) root@7s6go2hlu6o82-0:/duwenqing/JIANGQINRU/MAGI-1# free -h</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          503Gi       146Gi       337Gi       4.4Gi        18Gi       351Gi</span><br><span class="line">Swap:            0B          0B          0B</span><br></pre></td></tr></table></figure>
+<p>发现是没有swap空间</p>
+<p>尝试以下办法：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个 8GB 的交换文件</span></span><br><span class="line"><span class="built_in">sudo</span> fallocate -l 8G /swapfile</span><br><span class="line"><span class="comment"># 设置权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 600 /swapfile</span><br><span class="line"><span class="comment"># 格式化为 swap 空间</span></span><br><span class="line"><span class="built_in">sudo</span> mkswap /swapfile</span><br><span class="line"><span class="comment"># 启用 swap</span></span><br><span class="line"><span class="built_in">sudo</span> swapon /swapfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> fallocate -l 8G /mnt/swapfile</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 600 /mnt/swapfile</span><br><span class="line"><span class="built_in">sudo</span> mkswap /mnt/swapfile</span><br><span class="line"><span class="built_in">sudo</span> swapon /mnt/swapfile</span><br></pre></td></tr></table></figure>
+<p>均无果。</p>
+<p>如果能使用docker环境应该是最方便的，如果不行，应该需要更好的服务器配置才能配上这个环境……</p>
+<p>这行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Building wheel for flash-attn (setup.py) ... \</span><br></pre></td></tr></table></figure>
+<p>并不一定是“卡死”，有时是 <strong>正在编译 CUDA 核心代码（非常耗内存 +
+CPU + GPU）</strong>，但也可能是真的挂掉了。</p>
+<p>运行以下命令看看是否还在用 CPU：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -p $(pgrep -d, -f flash)</span><br></pre></td></tr></table></figure>
+<p>或者更保险一点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep &quot;gcc\|nvcc\|ninja&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>如果看到有 gcc / nvcc / ninja 在跑、CPU 占用 &gt;
+50%，说明还在编译。</strong> FlashAttention 会编译十几个 CUDA
+kernel，每个 kernel 编译可能要几分钟。</p>
+<blockquote>
+<p>⚠️ 在 8GB 内存 + 0 swap 的情况下，编译 2.8.3 很容易被 kill
+或卡死。</p>
+</blockquote>
+<p>如果内存或 swap 不足，几乎必挂</p>
+<p>系统当前状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MiB Mem : 1031704 total, 130073 free, 29171 used, 872458 buff/cache</span><br><span class="line">MiB Swap: 0 total</span><br></pre></td></tr></table></figure>
+<p>👉 <strong>Swap = 0</strong>，这就意味着一旦内存被吃满（编译
+flash-attn 大约需要 6～8GB）， 系统会直接 <strong>停住或被 OOM
+Kill</strong>。</p>
+<p>此时“卡住”其实是因为编译器进程被挂起或中止。</p>
+<p>最后最后的解决办法，其实就是第一个， 在GitHub Releases
+页面下载预编译文件：</p>
+<p>第一次不成是因为系统版本不够。换成22.04就可以了。</p>
+<p>但是当时版本选错了，还需要查看python的ABI状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;import torch; print(torch.compiled_with_cxx11_abi())&quot;</span></span><br></pre></td></tr></table></figure>
+<p>选择正确匹配的版本即可</p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/">BLOG</a></li>
+            <li><a href="/blog/records/">RECORDS</a></li>
+            <li>FLASH-ATTN</li>
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arctic</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/JadeQuer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
