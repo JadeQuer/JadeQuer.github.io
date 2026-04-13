@@ -18,16 +18,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法： 1、通过从 GitHub Releases 页面下载正确的轮文件 https:&#x2F;&#x2F;github.com&#x2F;Dao-AILab&#x2F;flash-attention&#x2F;releases 选择合适版本，如本项目要求的python 3.10, cuda 12.4, torch 2.4将选择以下版本 https:&#x2F;&#x2F;gi">
+    <meta name="description" content="直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法： 1、通过从 GitHub Releases 页面下载正确的轮文件 https:&#x2F;&#x2F;github.com&#x2F;Dao-AILab&#x2F;flash-attention&#x2F;releases 1python -c &quot;import torch, platform; print(torch.__version__, t">
 <meta property="og:type" content="website">
-<meta property="og:title" content="安装flash-attn">
+<meta property="og:title" content="flash-attn安装过程记录">
 <meta property="og:url" content="https://jadequer.github.io/blog/records/flash-attn.html">
 <meta property="og:site_name" content="Arctic&#39;s Blog">
-<meta property="og:description" content="直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法： 1、通过从 GitHub Releases 页面下载正确的轮文件 https:&#x2F;&#x2F;github.com&#x2F;Dao-AILab&#x2F;flash-attention&#x2F;releases 选择合适版本，如本项目要求的python 3.10, cuda 12.4, torch 2.4将选择以下版本 https:&#x2F;&#x2F;gi">
+<meta property="og:description" content="直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法： 1、通过从 GitHub Releases 页面下载正确的轮文件 https:&#x2F;&#x2F;github.com&#x2F;Dao-AILab&#x2F;flash-attention&#x2F;releases 1python -c &quot;import torch, platform; print(torch.__version__, t">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jadequer.github.io/blog/records/flash-attn.assets/image-20251027200248889.png">
 <meta property="article:published_time" content="2025-10-29T02:02:04.000Z">
-<meta property="article:modified_time" content="2025-10-29T04:32:06.612Z">
+<meta property="article:modified_time" content="2025-11-14T04:48:50.806Z">
 <meta property="article:author" content="Arctic">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jadequer.github.io/blog/records/flash-attn.assets/image-20251027200248889.png">
@@ -36,10 +36,10 @@
 <link rel="canonical" href="https://jadequer.github.io/blog/records/flash-attn">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://jadequer.github.io/blog/records/flash-attn.html","path":"blog/records/flash-attn.html","title":"安装flash-attn"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://jadequer.github.io/blog/records/flash-attn.html","path":"blog/records/flash-attn.html","title":"flash-attn安装过程记录"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>安装flash-attn | Arctic's Blog
+<title>flash-attn安装过程记录 | Arctic's Blog
 </title>
   
 
@@ -150,7 +150,7 @@
     
     <div class="post-block" lang="en"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">安装flash-attn
+<h1 class="post-title" itemprop="name headline">flash-attn安装过程记录
 </h1>
 
 <div class="post-meta-container">
@@ -170,6 +170,7 @@
           <p>直接pip install 安装flash-attn会遇见各种报错，尝试了很多方法：</p>
 <p>1、通过从 GitHub Releases 页面下载正确的轮文件</p>
 <p>https://github.com/Dao-AILab/flash-attention/releases</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;import torch, platform; print(torch.__version__, torch.version.cuda, platform.python_version())&quot;</span><br></pre></td></tr></table></figure>
 <p>选择合适版本，如本项目要求的python 3.10, cuda 12.4, torch
 2.4将选择以下版本</p>
 <p>https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.4cxx11abiTRUE-cp310-cp310-linux_x86_64.whl</p>
@@ -177,14 +178,14 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
 <p>运行bash.sh后报如下错：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(magi) root@7s6go2hlu6o82-0:/duwenqing/JIANGQINRU/MAGI-1# bash example/4.5B/run.sh</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/pipeline/entry.py&quot;</span>, line 18, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from inference.pipeline import MagiPipeline</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/pipeline/__init__.py&quot;</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from .pipeline import MagiPipeline</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/pipeline/pipeline.py&quot;</span>, line 20, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from inference.model.dit import get_dit</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/model/dit/__init__.py&quot;</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from .dit_model import get_dit</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/model/dit/dit_model.py&quot;</span>, line 39, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from .dit_module import CaptionEmbedder, FinalLinear, LearnableRotaryEmbeddingCat, TimestepEmbedder, TransformerBlock</span><br><span class="line">  File <span class="string">&quot;/duwenqing/JIANGQINRU/MAGI-1/inference/model/dit/dit_module.py&quot;</span>, line 27, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from flash_attn import flash_attn_varlen_func</span><br><span class="line">  File <span class="string">&quot;/duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/flash_attn/__init__.py&quot;</span>, line 3, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from flash_attn.flash_attn_interface import (</span><br><span class="line">  File <span class="string">&quot;/duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py&quot;</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    import flash_attn_2_cuda as flash_attn_gpu</span><br><span class="line">ImportError: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32<span class="string">&#x27; not found (required by /duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/flash_attn_2_cuda.cpython-310-x86_64-linux-gnu.so)</span></span><br></pre></td></tr></table></figure>
-<p>由于系统是ubuntu20.04，安装上面版本依旧无法运行，glibc（GNU
+<p>系统是ubuntu20.04，安装上面版本依旧无法运行，glibc（GNU
 C库）版本过低，而 <code>flash-attn</code>
 的二进制扩展模块（<code>.so</code> 文件）是在一个 <strong>glibc ≥
 2.32</strong> 的系统上编译的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd --version</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd (Ubuntu GLIBC 2.31-0ubuntu9.14) 2.31</span><br></pre></td></tr></table></figure>
-<p>由于直接根据python 3.10, cuda 12.4, torch
+<p>由于是直接根据python 3.10, cuda 12.4, torch
 2.4匹配到的是2.8.3版本，而requirement.txt中是2.4.2，可能安装2.4.2能解决</p>
 <p>2、安装requirement.txt中的2.4.2版本（可能有用，也可能没用），根据chatgpt提示，装预编译
 wheel：</p>
@@ -249,7 +250,11 @@ Kill</strong>。</p>
 <p>第一次不成是因为系统版本不够。换成22.04就可以了。</p>
 <p>但是当时版本选错了，还需要查看python的ABI状态：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;import torch; print(torch.compiled_with_cxx11_abi())&quot;</span></span><br></pre></td></tr></table></figure>
-<p>选择正确匹配的版本即可</p>
+<p>选择正确匹配的版本即可。</p>
+<blockquote>
+<p>安装了与环境匹配的flash_attn后，主程序可以运行，但是运行到一半给出了一个报错，原因是MAGI-1的代码中定义的接口只和flash_attn2.4及以下的版本匹配，但是又没有与环境匹配的预编译wheel文件。</p>
+<p>所以这个项目能跑的前提是：1、有一台有足够交换空间可以编译源码的机器；2、有一台可以运行docker的机器</p>
+</blockquote>
 
       </div>
       
@@ -274,7 +279,7 @@ Kill</strong>。</p>
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
