@@ -18,12 +18,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jadequer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"show_result":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":false,"post_block":false,"post_header":false,"post_body":false,"coll_header":false,"sidebar":false}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="autodl提供的镜像不包含全部的torch和cuda版本匹配，而一些包的安装依赖特定版本，这时可能需要通过在autodl中创建conda环境来配置。 报错信息： 123456(magi) root@7s6go2hlu6o82-0:&#x2F;duwenqing&#x2F;JIANGQINRU&#x2F;MAGI-1# python -c &quot;import torch; print(torch.__version_">
+    <meta name="description" content="autodl提供的镜像不包含全部的torch和cuda版本匹配，而一些包的安装依赖特定版本，这时可能需要通过在autodl中创建conda环境来配置。 报错信息： 123456(magi) root@7s6go2hlu6o82-0:&#x2F;duwenqing&#x2F;JIANGQINRU&#x2F;MAGI-1# python -c &quot;import torch; print(torch.__version__)">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Autodl容器中安装pytorch问题解决">
 <meta property="og:url" content="https://jadequer.github.io/blog/records/Autodl%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%AE%89%E8%A3%85pytorch%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3.html">
 <meta property="og:site_name" content="JadeQuer&#39;s Blog">
-<meta property="og:description" content="autodl提供的镜像不包含全部的torch和cuda版本匹配，而一些包的安装依赖特定版本，这时可能需要通过在autodl中创建conda环境来配置。 报错信息： 123456(magi) root@7s6go2hlu6o82-0:&#x2F;duwenqing&#x2F;JIANGQINRU&#x2F;MAGI-1# python -c &quot;import torch; print(torch.__version_">
+<meta property="og:description" content="autodl提供的镜像不包含全部的torch和cuda版本匹配，而一些包的安装依赖特定版本，这时可能需要通过在autodl中创建conda环境来配置。 报错信息： 123456(magi) root@7s6go2hlu6o82-0:&#x2F;duwenqing&#x2F;JIANGQINRU&#x2F;MAGI-1# python -c &quot;import torch; print(torch.__version__)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-29T02:02:04.000Z">
 <meta property="article:modified_time" content="2025-10-29T04:32:33.782Z">
@@ -169,8 +169,7 @@
 <p>报错信息：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(magi) root@7s6go2hlu6o82-0:/duwenqing/JIANGQINRU/MAGI-1# python -c <span class="string">&quot;import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.is_available())&quot;</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;string&gt;&quot;</span>, line 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">&quot;/duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/torch/__init__.py&quot;</span>, line 290, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from torch._C import *  <span class="comment"># noqa: F403</span></span><br><span class="line">ImportError: /duwenqing/miniconda3/envs/magi/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so: undefined symbol: iJIT_NotifyEvent</span><br></pre></td></tr></table></figure>
 <p>说明没有 <code>intel-openmp</code> 这个包，尝试了其他办法，无果。</p>
-<p>直接用 <strong>纯 CUDA 构建版本的 PyTorch</strong>，它完全不依赖
-Intel OpenMP / ITT。</p>
+<p>直接用 <strong>纯 CUDA 构建版本的 PyTorch</strong>，它完全不依赖 Intel OpenMP / ITT。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda remove pytorch torchvision torchaudio -y</span><br><span class="line"></span><br><span class="line">pip install torch==2.4.0+cu124 torchvision==0.19.0+cu124 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu124</span><br></pre></td></tr></table></figure>
 <p>验证：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;import torch; print(torch.__version__); print(torch.cuda.is_available())&quot;</span></span><br></pre></td></tr></table></figure>
